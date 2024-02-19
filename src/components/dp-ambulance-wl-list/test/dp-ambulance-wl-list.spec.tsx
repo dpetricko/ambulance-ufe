@@ -5,7 +5,7 @@ describe('dp-ambulance-wl-list', () => {
    it('renders', async () => {
       const page = await newSpecPage({
          components: [DpAmbulanceWlList],
-         html: `<<pfx>-ambulance-wl-list></<pfx>-ambulance-wl-list>`,
+         html: `<dp-ambulance-wl-list></dp-ambulance-wl-list>`,
       });
 
       const wlList = page.rootInstance as DpAmbulanceWlList;
