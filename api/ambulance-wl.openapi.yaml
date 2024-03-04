@@ -19,47 +19,6 @@ tags:
 
 paths:
   '/waiting-list/{ambulanceId}/entries':
-    post:
-      tags:
-        - ambulanceWaitingList
-      summary: Saves new entry into waiting list
-      operationId: createWaitingListEntry
-      description: Use this method to store new entry into the waiting list.
-      parameters:
-        - in: path
-          name: ambulanceId
-          description: pass the id of the particular ambulance
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/WaitingListEntry"
-            examples:
-              request-sample:
-                $ref: "#/components/examples/WaitingListEntryExample"
-        description: Waiting list entry to store
-        required: true
-      responses:
-        "200":
-          description: >-
-            Value of the waiting list entry with re-computed estimated time of
-            ambulance entry
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WaitingListEntry"
-              examples:
-                updated-response:
-                  $ref: "#/components/examples/WaitingListEntryExample"
-        "400":
-          description: Missing mandatory properties of input object.
-        "404":
-          description: Ambulance with such ID does not exists
-        "409":
-          description: Entry with the specified id already exists
     get:
       tags:
         - ambulanceWaitingList
@@ -87,6 +46,47 @@ paths:
                   $ref: '#/components/examples/WaitingListEntriesExample'
         '404':
           description: Ambulance with such ID does not exist
+    post:
+      tags:
+        - ambulanceWaitingList
+      summary: Saves new entry into waiting list
+      operationId: createWaitingListEntry
+      description: Use this method to store new entry into the waiting list.
+      parameters:
+        - in: path
+          name: ambulanceId
+          description: pass the id of the particular ambulance
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaitingListEntry'
+            examples:
+              request-sample:
+                $ref: '#/components/examples/WaitingListEntryExample'
+        description: Waiting list entry to store
+        required: true
+      responses:
+        '200':
+          description: >-
+            Value of the waiting list entry with re-computed estimated time of
+            ambulance entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitingListEntry'
+              examples:
+                updated-response:
+                  $ref: '#/components/examples/WaitingListEntryExample'
+        '400':
+          description: Missing mandatory properties of input object.
+        '404':
+          description: Ambulance with such ID does not exists
+        '409':
+          description: Entry with the specified id already exists
   '/waiting-list/{ambulanceId}/entries/{entryId}':
     get:
       tags:
@@ -110,16 +110,16 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: value of the waiting list entries
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/WaitingListEntry"
+                $ref: '#/components/schemas/WaitingListEntry'
               examples:
                 response:
-                  $ref: "#/components/examples/WaitingListEntryExample"
-        "404":
+                  $ref: '#/components/examples/WaitingListEntryExample'
+        '404':
           description: Ambulance or Entry with such ID does not exists
     put:
       tags:
@@ -144,29 +144,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/WaitingListEntry"
+              $ref: '#/components/schemas/WaitingListEntry'
             examples:
               request:
-                $ref: "#/components/examples/WaitingListEntryExample"
+                $ref: '#/components/examples/WaitingListEntryExample'
         description: Waiting list entry to update
         required: true
       responses:
-        "200":
+        '200':
           description: >-
             value of the waiting list entry with re-computed estimated time of
             ambulance entry
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/WaitingListEntry"
+                $ref: '#/components/schemas/WaitingListEntry'
               examples:
                 response:
-                  $ref: "#/components/examples/WaitingListEntryExample"
-        "403":
+                  $ref: '#/components/examples/WaitingListEntryExample'
+        '403':
           description: >-
             Value of the entryID and the data id is mismatching. Details are
             provided in the response body.
-        "404":
+        '404':
           description: Ambulance or Entry with such ID does not exists
     delete:
       tags:
@@ -188,9 +188,9 @@ paths:
           schema:
             type: string
       responses:
-        "204":
+        '204':
           description: Item deleted
-        "404":
+        '404':
           description: Ambulance or Entry with such ID does not exists
   '/waiting-list/{ambulanceId}/condition':
     get:
@@ -207,19 +207,20 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: value of the predefined conditions
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Condition"
+                  $ref: '#/components/schemas/Condition'
               examples:
                 response:
-                  $ref: "#/components/examples/ConditionsListExample"
-        "404":
+                  $ref: '#/components/examples/ConditionsListExample'
+        '404':
           description: Ambulance with such ID does not exists
+
 components:
   schemas:
     WaitingListEntry:
@@ -339,11 +340,11 @@ components:
       value:
         - value: Teploty
           code: subfebrilia
-          reference: "https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/"
+          reference: 'https://zdravoteka.sk/priznaky/zvysena-telesna-teplota/'
           typicalDurationMinutes: 20
         - value: Nevoľnosť
           code: nausea
-          reference: "https://zdravoteka.sk/priznaky/nevolnost/"
+          reference: 'https://zdravoteka.sk/priznaky/nevolnost/'
           typicalDurationMinutes: 45
         - value: Kontrola
           code: followup

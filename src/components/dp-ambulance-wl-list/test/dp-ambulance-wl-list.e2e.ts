@@ -1,6 +1,6 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('abl-ambulance-wl-list', () => {
+describe('dp-ambulance-wl-list', () => {
   it('renders', async () => {
     const page = await newE2EPage();
     await page.setContent('<dp-ambulance-wl-list></dp-ambulance-wl-list>');

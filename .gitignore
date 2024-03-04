@@ -26,6 +26,3 @@ UserInterfaceState.xcuserstate
 .env
 
 .openapi.json
-
-.npmignore
-*.sh
