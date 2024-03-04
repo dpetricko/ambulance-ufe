@@ -15,6 +15,8 @@ export class DpAmbulanceWlApp {
   @State() private relativePath = "";
 
   @Prop() basePath: string="";
+  @Prop() apiBase: string;
+  @Prop() ambulanceId: string;
 
   componentWillLoad() {
     const baseUri = new URL(this.basePath, document.baseURI || "/").pathname;
@@ -57,11 +59,10 @@ export class DpAmbulanceWlApp {
         ? <dp-ambulance-wl-editor entry-id={entryId}
             oneditor-closed={ () => navigate("./list")} >
           </dp-ambulance-wl-editor>
-        : <dp-ambulance-wl-list
+        : <dp-ambulance-wl-list  ambulance-id={this.ambulanceId} api-base={this.apiBase}
           onentry-clicked={ (ev: CustomEvent<string>)=> navigate("./entry/" + ev.detail) } >
           </dp-ambulance-wl-list>
         }
-  
       </Host>
     );
   }
