@@ -34,6 +34,7 @@ export class DpAmbulanceWlEditor {
        waitingSince: new Date().toISOString(),
        estimatedDurationMinutes: 15
       };
+      this.entry.estimatedStart = (await this.assumedEntryDateAsync()).toISOString();
       return this.entry;
     }
 
